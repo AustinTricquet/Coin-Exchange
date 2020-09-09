@@ -15,30 +15,36 @@ class App extends React.Component {
     super(props);
     this.state = {
       balance: 10000,
+      showBalance: true,
       coinData: [
         {
           name: 'Bitcoin',
           ticker: 'BTC',
+          balance: 0.5,
           price: 9999.99
         },
         {
           name: 'Ethereum',
           ticker: 'ETH',
+          balance: 20,
           price: 299.99
         },
         {
           name: 'Tether',
           ticker: 'USDT',
+          balance: 0,
           price: 1.00
         },
         {
           name: 'Ripple',
           ticker: 'XRP',
+          balance: 100,
           price: 0.23
         },
       ]
     }
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleShowBalance = this.handleShowBalance.bind(this);
   }
 
   handleRefresh(valueChangeTicker) {
@@ -58,16 +64,22 @@ class App extends React.Component {
     
     this.setState( {coinData: newCoinData} );
   }
-  
 
-
+  handleShowBalance() {
+    this.setState( function(oldState) {
+      return {
+        ...oldState,
+        showBalance: !oldState.showBalance
+      }
+    });
+  }
 
   render() {
     return (
       <Div>
         <Header />
-        <AccountBalance amount={this.state.balance} />
-        <CoinList coinData={this.state.coinData} handleRefresh={this.handleRefresh}/>
+        <AccountBalance amount={this.state.balance} showBalance={this.state.showBalance} handleShowBalance={this.handleShowBalance}/>
+        <CoinList coinData={this.state.coinData} showBalance={this.state.showBalance} handleRefresh={this.handleRefresh}/>
       </Div>
     );
   }
