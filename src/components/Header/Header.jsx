@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from './logo.svg';
 import styled from 'styled-components';
 
@@ -22,15 +22,15 @@ const H1 = styled.h1`
 `;
 
   
-export default class Header extends Component {
-    render() {
-        return (
-            <Head className="App-header">
-                <Img src={logo} alt="React logo" className="App-logo" />
-                <H1 className="App-title">
-                    Coin Exchange
-                </H1>
-            </Head>
-        )
-    }
+export default function Header(props) {
+ 
+    return (
+        <Head className="App-header">
+            <Img src={logo} alt="React logo" className="App-logo" />
+            <H1 className="App-title">
+                Coin Exchange
+            </H1>
+        </Head>
+    )
+    
 }
